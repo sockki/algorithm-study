@@ -1,0 +1,18 @@
+import sys
+
+a = int(sys.stdin.readline()) //한개 정수 입력  : 3
+
+a = sys.stdin.readline() // : 3\n
+
+a,b,c = map(int,sys.stdin.readline().split()) // 정해진 갯수의 정수 한줄 입력
+
+data = list(map(int,sys.stdin.readline().split()))// 임의의 갯수의 정수 한줄에 입력 받아 리스트에 저장
+
+data = []
+n = int(sys.stdin.readline())
+for i in range(n):
+    data.append(list(map(int,sys.stdin.readline().split())))  // 임의의 갯수의 정수  n줄 입력받아 2차원 리스트에 저장
+
+n = int(sys.stdin.readline())
+data = [sys.stdin.readline().strip() for i in range(n)]  // 문자열 n 줄 입력 받아 리스트에 저장
+
