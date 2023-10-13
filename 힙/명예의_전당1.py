@@ -1,16 +1,18 @@
+from heapq import *
+
+
 def solution(k, score):
+    hof = []
     answer = []
-    honor = []
-    for i, nowsco in enumerate(score):
-        if i < k:
-            honor.append(nowsco)
-            answer.append(min(honor))
-        else:
-            if nowsco > answer[-1]:
-                honor.append(nowsco)
-                honor.sort()
-                honor = honor[1:]
-                answer.append(honor[0])
-            else:
-                answer.append(answer[-1])
+    count = 0
+    for i in score:
+        count += 1
+        heappush(hof, i)
+
+        if (count > k):
+            heappop(hof)
+        answer.append(hof[0])
+
     return answer
+
+# heap 에서 제일 낮은 값은 [0] index에 저장이 된다.
