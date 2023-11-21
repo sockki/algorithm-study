@@ -1,11 +1,19 @@
 from itertools import combinations, permutations
 
+def inclination(point1, point2):
+    return (point2[1] - point1[1]) / (point2[0] - point1[0])
+
+
 def solution(dots):
-    answer = 0
-    perm = list(permutations(dots,4))
-    print(perm)
-    for i in perm:
-        if (i[0][1] - i[1][1])/(i[0][0] - i[1][0]) == (i[2][1] - i[3][1])/(i[2][0] - i[3][0]):
+    combs = combinations(dots, 2)
+
+    for comb in combs:
+        another = [dot for dot in dots if dot not in comb]
+
+        if inclination(*comb) == inclination(*another):
             return 1
+    
         
-    return answer
+    return 0
+
+# dot for dot in dots if dot not in comb
