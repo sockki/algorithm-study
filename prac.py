@@ -1,2 +1,3 @@
-a,b = map(str, "E 2".split())
-print(a,b)
+a = [1,2]
+b,c = a
+print(b,c)
