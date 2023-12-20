@@ -1,68 +1,14 @@
-from collections import deque
+def solution(n, k, enemy):
+    answer = 0
+    dp = [[0 for _ in range(len(enemy) + 1)] for _ in range(k + 2)]
+    dp[1][0] = n
+    for i in range(1, len(dp)):
+        for j in range(1, len(dp[i])):
+            dp[i][j] = max(dp[i-1][j-1], dp[i][j-1] - enemy[j-1])
+            if j >= k and dp[i][j] == 0:
+                print(i,j)
+                answer = j - 1
+                break
+    return answer
 
-picks = [1, 3, 2]
-minerals= ["diamond", "diamond", "diamond", "iron", "iron", "diamond", "iron", "stone"]
-
-def solution(picks, minerals):
-    result = []
-    
-    def dfs(picks, minerals, n, p):
-        nonlocal result 
-        
-        if n == 0:
-            picks[n] -= 1
-            minerals = deque(minerals)
-            for i in range(5):
-                if minerals:
-                    minerals.popleft()
-                    p += 1
-                    
-        elif n == 1:
-            picks[n] -= 1
-            minerals = deque(minerals)
-            for i in range(5):
-                if minerals:
-                    a = minerals.popleft()
-                    if a == "diamond":
-                        p += 5
-                    else:
-                        p += 1
-        elif n == 2:
-            picks[n] -= 1
-            minerals = deque(minerals)
-            for i in range(5):
-                if minerals:
-                    a = minerals.popleft()
-                    if a == "diamond":
-                        p += 25
-                    elif a == "iron":
-                        p += 5
-                    else:
-                        p += 1
-        if sum(picks) == 0 or not minerals:
-            result.append(p)
-            return
-        else:
-            minerals = list(minerals)
-            if picks[0] > 0:
-                dfs(picks, minerals, 0, p)
-            if picks[1] > 0:
-                dfs(picks, minerals, 1, p)
-            if picks[2] > 0:
-                dfs(picks, minerals, 2, p)
-                
-    p = 0
-
-    if picks[0] > 0:
-        dfs(picks, minerals, 0, p)
-    if picks[1] > 0:
-        dfs(picks, minerals, 1, p)
-    if picks[2] > 0:
-        dfs(picks, minerals, 2, p)
-        
-    
-        
-        
-    return result
-
-print(solution(picks, minerals))
+print(solution(7,3,[4, 2, 4, 5, 3, 3, 1]))
