@@ -1,19 +1,17 @@
 def solution(babbling):
     answer = 0
-    dic = {"aya":1, "ye":1, "woo":1, "ma":1}
-    
+    babbs = {"aya","ye","woo","ma"}
     for bab in babbling:
         now = ""
-        before = ""
-        for i in bab:
-            now += i
-            if now in dic:
-                if now == before:
+        past = ""
+        arr = list(bab)
+        while arr:
+            now += arr.pop(0)
+            if now in babbs:
+                if now == past:
                     break
-                else:
-                    before = now
-                    now = ""
+                past = now
+                now = ""
         if now == "":
             answer += 1
-        
     return answer
