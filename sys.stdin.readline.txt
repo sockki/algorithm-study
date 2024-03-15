@@ -16,3 +16,11 @@ for i in range(n):
 n = int(sys.stdin.readline())
 data = [sys.stdin.readline().strip() for i in range(n)]  // 문자열 n 줄 입력 받아 리스트에 저장
 
+import sys
+
+data = []
+n = int(sys.stdin.readline())
+for i in range(n):
+    data.append(list(map(int,sys.stdin.readline.split())))
+
+data = [sys.split.readline.strip() for i in range(n)]
